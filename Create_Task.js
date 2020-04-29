@@ -1,4 +1,5 @@
 var earnings = 0;
+var lifelines = 2;
 setText("Total_Earnings0", earnings);
 
 Start_Game();
@@ -9,7 +10,7 @@ Question4();
 Question5();
 Question6();
 Question7();
-LifeLine();
+LifeLineFinished();
 
 function Start_Game() {
   onEvent("Instructions", "click", function() {
@@ -17,6 +18,9 @@ function Start_Game() {
   });
   onEvent("Play_Button", "click", function () {
     setScreen("Question_0");
+  });
+  onEvent("back_button", "click", function(){
+    setScreen("Starting_Screen");
   });}
 
 function Question1() {
@@ -164,43 +168,89 @@ function Question7(){
 }
 
 function LifeLine(){
-  var x = 2;
   onEvent("Life_Line1", "click", function(){
-    x = x - 1 });
+    lifelines = lifelines - 1;
+    setProperty("0B", "background-color", "red");
+    setProperty("0D","background-color","red");
+    console.log(lifelines);
+  });
   onEvent("Life_Line2", "click", function(){
-    x = x - 1 });
+    lifelines = lifelines - 1 ;
+    setProperty("1C","background-color","red");
+    setProperty("1D","background-color","red");
+    console.log(lifelines);
+  });
   onEvent("Life_Line3", "click", function(){
-    x = x - 1});
+    lifelines = lifelines - 1;
+    setProperty("2C","background-color","red");
+    setProperty("2B","background-color","red")});
   onEvent("Life_Line4", "click", function(){
-    x = x - 1});
+    lifelines = lifelines - 1;
+    setProperty("3B","background-color","red");
+    setProperty("3D","background-color","red")});
   onEvent("Life_Line5", "click", function(){
-    x = x - 1});
+    lifelines = lifelines - 1;
+    setProperty("4C","background-color","red");
+    setProperty("4D","background-color","red")});
   onEvent("Life_Line6", "click", function(){
-    x = x - 1});
+    lifelines = lifelines - 1;
+    setProperty("5C","background-color","red");
+    setProperty("5B","background-color","red")});
   onEvent("Life_Line7", "click", function(){
-    x = x - 1});
-  if (x==0) {
+    lifelines = lifelines - 1;
+    setProperty("6C","background-color","red");
+    setProperty("6D","background-color","red")});
+}
+
+function LifeLineFinished() {
+  LifeLine();
+  if (lifelines >= 0) {
     setProperty("Life_Line3","background-color","black");
     setProperty("Life_Line4","background-color","black");
     setProperty("Life_Line5","background-color","black");
     setProperty("Life_Line6","background-color","black");
     setProperty("Life_Line7","background-color","black");
+    
     onEvent("Life_Line3", "click", function(){
-      setScreen("Line_Line_Finished");
+      setScreen("Line_Line_Finished3");
+      onEvent("return3", "click", function(){
+        setScreen("Question_2");
+        setProperty("2C","background-color","#362f49");
+        setProperty("2B","background-color","#362f49");        
+      });
     });
     onEvent("Life_Line4", "click", function(){
-      setScreen("Line_Line_Finished");
+      setScreen("Life_Line_Finished4");
+      onEvent("return4", "click", function() {
+        setScreen("Question_3");
+        setProperty("3D","background-color","#362f49");
+        setProperty("3B","background-color","#362f49");        
+      });
     });
     onEvent("Life_Line5", "click", function(){
-      setScreen("Line_Line_Finished");
+      setScreen("Life_Line_Finished5");
+      onEvent("return5", "click", function() {
+        setScreen("Question_4");
+        setProperty("4C","background-color","#362f49");
+        setProperty("4D","background-color","#362f49");        
+      });
     });
     onEvent("Life_Line6", "click", function(){
-      setScreen("Line_Line_Finished");
+      setScreen("Life_Line_Finished6");
+      onEvent("return6", "click", function() {
+        setScreen("Question_5");
+        setProperty("5C","background-color","#362f49");
+        setProperty("5B","background-color","#362f49");        
+      });
     });
     onEvent("Life_Line7", "click", function(){
-      setScreen("Line_Line_Finished");
+      setScreen("Life_Line_Finished7");
+      onEvent("return7", "click", function() {
+        setScreen("Question_6");
+        setProperty("6C","background-color","#362f49");
+        setProperty("6D","background-color","#362f49");        
+      });
     });
   }
-  
 }
 
